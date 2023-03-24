@@ -187,11 +187,13 @@ const expandProduct = function (index, scrollTo) {
                     <h2 class="title product__title">${
                       product.name
                     } Candleaf®</h2>
+                    <div class="product__buy">
                     <span class="product-info__price">${product.price}</span>
                     <div class="product__quantity">
                         <button class="btn-reset product-quantity__btn product-quantity__btn--plus">+</button>
                         <span class="product-quantity__number"></span>
                         <button class="btn-reset product-quantity__btn product-quantity__btn--minus">-</button>
+                    </div>
                     </div>
                     <button class="btn btn-reset product__btn">
                         <svg width="25" class="product__svg" height="24" viewBox="0 0 25 24" fill="none"
@@ -221,12 +223,15 @@ const expandProduct = function (index, scrollTo) {
                         essential oils</span>
                     <span class="product-description__span"><span class="bold">Burning Time</span>: ${
                       product.burningTime
-                    } hours <span
-                            class="bold"> Dimension</span>: ${
-                              product.dimension
-                            } <span class="bold"> Weight</span>: ${
-    product.weight
-  }g </span>
+                    } hours 
+                    <span class="product-description__new">
+                    <span class="bold"> Dimension</span>: ${product.dimension}
+                    </span>
+                    <span class="product-description__new">
+                    <span class="bold"> Weight</span>: ${
+                      product.weight
+                    }g </span>
+                    </span>
                     </div>
                     <div class="product__shipping">
                         <p class="product-shipping__description">

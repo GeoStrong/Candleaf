@@ -60,6 +60,65 @@
     }
 }
 
+@media(max-width: 768px) {
+    html {
+        font-size: calc(100vw / 768 * 10);
+    }
+
+    .product__row--1 {
+        flex-direction: column;
+        position: relative;
+        padding-top: 12rem;
+    }
+
+    .product__title {
+        width: 100%;
+        position: absolute;
+        font-size: 3.6rem;
+        text-align-last: left;
+        top: 0;
+        left: 0;
+    }
+
+    .product__info {
+        width: 70%;
+        gap: 2rem;
+        align-items: normal;
+    }
+
+    .product__buy {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .product__quantity {
+        margin: 0;
+    }
+
+    .product__btn {
+        justify-content: center;
+        font-size: 2.5rem;
+    }
+
+    .product__row--2 {
+        flex-direction: column;
+    }
+
+    .product__description {
+        font-size: 2.1rem;
+    }
+
+    .product-description__new {
+        display: block;
+    }
+
+    .product-shipping__description {
+        font-size: 2.3rem;
+    }
+}
+
 @media(max-width: 576px) {
     html {
         font-size: calc(100vw / 576 * 10);
@@ -85,23 +144,37 @@
     .testimonials__content {
         flex-direction: column;
     }
+
+    .footer__description {
+        width: 100%;
+        font-size: 2.6rem;
+    }
+
+    .footer__content {
+        flex-wrap: wrap;
+    }
+
+    .footer__row:first-child {
+        order: 0;
+    }
+
+    .footer__row:nth-child(2) {
+        order: 2;
+    }
+
+    .footer__row:last-child {
+        order: 1
+    }
+
+    .footer__list {
+        font-size: 2rem;
+    }
 }
 
 @media(max-width: 480px) {
     html {
         font-size: calc(100vw / 480 * 10);
     }
-
-    .header__bottom {
-        height: 100vh;
-    }
-
-    .header__card {
-        justify-content: center;
-    }
-}
-
-@media(max-width: 360px) {
 
     .container {
         margin: 0 1.5rem;
@@ -117,6 +190,15 @@
 
     .header__bottom {
         height: 100vh;
+    }
+
+    .header__card {
+        justify-content: center;
+    }
+}
+
+@media(max-width: 360px) {
+    .header__bottom {
         padding: 29rem 0 21rem 0;
     }
 
@@ -163,28 +245,8 @@
         font-size: 2.5rem;
     }
 
-    .footer__description {
-        width: 100%;
-        font-size: 2.6rem;
-    }
-
-    .footer__content {
-        flex-wrap: wrap;
-    }
-
-    .footer__row:first-child {
-        order: 0;
-    }
-
-    .footer__row:nth-child(2) {
-        order: 2;
-    }
-
-    .footer__row:last-child {
-        order: 1
-    }
-
-    .footer__list {
-        font-size: 2.3rem;
+    .product__title {
+        font-size: 3.6rem;
+        top: 2rem;
     }
 }
