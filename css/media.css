@@ -31,6 +31,10 @@
         justify-content: space-between;
     }
 
+    .products__card:hover {
+        transform: none;
+    }
+
     .benefits__content {
         flex-direction: column-reverse;
         align-items: center;
