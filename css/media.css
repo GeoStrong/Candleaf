@@ -34,6 +34,7 @@
     .benefits__content {
         flex-direction: column-reverse;
         align-items: center;
+        gap: 4.5rem;
     }
 
     .benefits__intro {
@@ -79,5 +80,107 @@
 
     .testimonials__content {
         flex-direction: column;
+    }
+}
+
+@media(max-width: 480px) {
+    html {
+        font-size: calc(100vw / 480 * 10);
+    }
+
+    .header__bottom {
+        height: 100vh;
+    }
+
+    .header__card {
+        justify-content: center;
+    }
+}
+
+@media(max-width: 360px) {
+
+    .container {
+        margin: 0 1.5rem;
+    }
+
+    .header__container {
+        margin: 0;
+    }
+
+    .header__top {
+        padding: 2rem 3rem;
+    }
+
+    .header__bottom {
+        height: 100vh;
+        padding: 29rem 0 21rem 0;
+    }
+
+    .header__card {
+        max-width: 90%;
+    }
+
+    .title {
+        font-size: 5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .header__title {
+        margin-bottom: 1rem;
+    }
+
+    .description, .header__description, .benefits__description {
+        font-size: 2.4rem;
+    }
+
+    .btn {
+        font-size: 2.5rem;
+        padding: 1.8rem 4.4rem;
+        width: 100%;
+    }
+
+    .products__name {
+        font-size: 2.6rem;
+    }
+
+    .products__price {
+        font-size: 3rem;
+    }
+
+    .benefits__list {
+        font-size: 2.6rem;
+    }
+
+    .testimonials__comment {
+        font-size: 3.2rem;
+    }
+
+    .testimonials__name {
+        font-size: 2.5rem;
+    }
+
+    .footer__description {
+        width: 100%;
+        font-size: 2.6rem;
+    }
+
+    .footer__content {
+        flex-wrap: wrap;
+    }
+
+    .footer__row:first-child {
+        order: 0;
+    }
+
+    .footer__row:nth-child(2) {
+        order: 2;
+    }
+
+    .footer__row:last-child {
+        order: 1
+    }
+
+    .footer__list {
+        font-size: 2.3rem;
     }
 }

@@ -236,6 +236,10 @@ body {
     text-align: center;
 }
 
+.header__title {
+    margin-bottom: 1rem;
+}
+
 .header__description {
     margin: 0;
     margin-bottom: 4.5rem;
@@ -328,7 +332,9 @@ body {
 }
 
 .benefits__list {
+    list-style-image: url(../images/checkmark.svg);
     font-size: 1.6rem;
+    padding-left: 2rem;
 }
 
 .benefits__item:not(:last-child) {
@@ -337,10 +343,6 @@ body {
 
 .benefits__item:last-child {
     margin-bottom: 6.8rem;
-}
-
-.benefits__span {
-    margin-right: 0.5rem;
 }
 
 .benefits__img {
@@ -390,8 +392,10 @@ body {
 
 .testimonials__name {
     margin: 0;
-    font-size: 1.8rem;
-    line-height: 2.1rem;
+    font-family: 'Helvetica';
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 1.8rem;
     color: #7C8087;
 }
 
@@ -420,6 +424,8 @@ body {
 }
 
 .footer__description {
+    margin: 0;
+    margin: 5rem 0;
     width: 53%;
     font-family: 'Poppins';
     font-weight: 400;
