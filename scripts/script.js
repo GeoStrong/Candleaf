@@ -245,9 +245,21 @@ const expandProduct = function (index, scrollTo) {
                             </span>
                         </p>
                     </div>
-                </div>
+                </div>        
+        <div class="loader-container">
+        <div class="loader"></div>
+        <div class="loader__add">
+        <p class="loader__description">Item was added to your cart! ✅</p>
+        <button class="btn btn-reset loader__btn">Continue</button>
+        </div>
+        </div>
         `;
   productContainer.insertAdjacentHTML('beforeend', html);
+
+  const loaderContainer = document.querySelector('.loader-container');
+  const loader = document.querySelector('.loader');
+  const loaderAdd = document.querySelector('.loader__add');
+  const loaderBtn = document.querySelector('.loader__btn');
 
   document
     .querySelector('.product-container__btn')
@@ -283,7 +295,16 @@ const expandProduct = function (index, scrollTo) {
         price: product.price,
         quantity: number,
       });
+      loaderContainer.style.display = 'flex';
+      setTimeout(function () {
+        loader.style.display = 'none';
+        loaderAdd.style.display = 'flex';
+      }, 3000);
     });
+
+  loaderBtn.addEventListener('click', function () {
+    loaderContainer.style.display = 'none';
+  });
 };
 
 const calcPopular = function (products) {
