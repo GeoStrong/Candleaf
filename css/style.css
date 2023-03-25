@@ -166,8 +166,39 @@ body {
     border-bottom: 1px solid #c2c0c0;
 }
 
-.burger {
+.header__burger {
+    position: relative;
     display: none;
+}
+
+/* .header-burger__open {
+    position: absolute;
+    z-index: 2;
+    transition: all 1s ease-in-out;
+} */
+
+.header-burger__close {
+    display: none;
+    position: absolute;
+    z-index: 2;
+    transition: all 1s ease-in-out;
+}
+
+.header-burger__svg rect {
+    fill: #272727;
+    transition: fill 0.3s ease-in-out;
+}
+
+.header-burger__svg:hover rect {
+    fill: #967878;
+}
+
+.header-burger__svg:active rect {
+    fill: #ffffff;
+}
+
+.header-burger__svg--close rect {
+    fill: #fff;
 }
 
 .header__list {
@@ -176,6 +207,22 @@ body {
     align-items: center;
     font-size: 1.6rem;
     line-height: 1.9rem;
+}
+
+.active {
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15rem;
+    width: 110rem;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    font-size: 3.5rem;
+    color: #fff;
+    background-color: #000;
+    z-index: 1;
+    transition: all 0.3s ease-in-out;
 }
 
 .header__item {

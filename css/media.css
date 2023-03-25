@@ -15,15 +15,17 @@
         text-align: center;
     }
 
-    .burger {
+    .header__burger {
+        position: relative;
         display: block;
+        z-index: 100;
     }
 
     .header__top {
         padding: 2rem 6.5rem;
     }
 
-    .header__nav {
+    .header__list {
         display: none;
     }
 
@@ -63,6 +65,10 @@
 @media(max-width: 768px) {
     html {
         font-size: calc(100vw / 768 * 10);
+    }
+
+    .active {
+        width: 80rem;
     }
 
     .product__row--1 {
@@ -122,6 +128,10 @@
 @media(max-width: 576px) {
     html {
         font-size: calc(100vw / 576 * 10);
+    }
+
+    .active {
+        width: 60rem;
     }
 
     .header__bottom {
@@ -188,6 +198,10 @@
         padding: 2rem 3rem;
     }
 
+    .active {
+        width: 50rem;
+    }
+
     .header__bottom {
         height: 100vh;
     }
@@ -198,6 +212,11 @@
 }
 
 @media(max-width: 360px) {
+    .active {
+        gap: 23rem;
+        font-size: 4.5rem;
+    }
+
     .header__bottom {
         padding: 29rem 0 21rem 0;
     }

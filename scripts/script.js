@@ -1,6 +1,10 @@
 'use strict';
 
 const header = document.querySelector('header');
+const headerNav = document.querySelector('.header__nav');
+const headerList = document.querySelector('.header__list');
+const burgerOpen = document.querySelector('.header-burger__open');
+const burgerClose = document.querySelector('.header-burger__close');
 const productsSection = document.querySelector('.products');
 const productContent = document.querySelector('.products__content');
 const testimonialsContent = document.querySelector('.testimonials__content');
@@ -308,3 +312,19 @@ const clickEvent = function (selector) {
 
 clickEvent(productContent);
 clickEvent(popularContent);
+
+const burgerActive = function (property, value, curTarget) {
+  property.style.display = 'block';
+  headerList.style.display = value;
+  curTarget.style.display = 'none';
+};
+
+burgerOpen.addEventListener('click', function (event) {
+  burgerActive(burgerClose, 'flex', event.currentTarget);
+  headerList.classList.add('active');
+});
+
+burgerClose.addEventListener('click', function (event) {
+  burgerActive(burgerOpen, 'none', event.currentTarget);
+  headerList.classList.remove('active');
+});

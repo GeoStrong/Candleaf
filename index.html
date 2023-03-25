@@ -16,21 +16,32 @@
     <header class="header">
         <div class="container header__container">
             <div class="header__top">
-                <div class="burger">
-                    <svg width="32" height="17" viewBox="0 0 32 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="32" height="3" fill="#272727" />
-                        <rect y="7" width="32" height="3" fill="#272727" />
-                        <rect y="14" width="32" height="3" fill="#272727" />
-                    </svg>
+                <div class="header__burger">
+                    <button class="btn-reset header-burger__open">
+                        <svg class="header-burger__svg header-burger__svg--open" width="32" height="17"
+                            viewBox="0 0 32 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="3" fill="none" />
+                            <rect y="7" width="32" height="3" fill="none" />
+                            <rect y="14" width="32" height="3" fill="none" />
+                        </svg>
+                    </button>
+                    <button class="btn-reset header-burger__close">
+                        <svg class="header-burger__svg header-burger__svg--close" width="70" height="70"
+                            viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="8.9541" y="7.30432" width="11.6645" height="2.33291"
+                                transform="rotate(45 8.9541 7.30432)" fill="none" />
+                            <rect x="7.30469" y="15.5524" width="11.6645" height="2.33291"
+                                transform="rotate(-45 7.30469 15.5524)" fill="none" />
+                        </svg>
+                    </button>
                 </div>
+
                 <div class="header__logo"><img src="./images/logo.svg" alt="logo"></div>
-                <nav class="header__nav">
-                    <ul class="list-reset header__list">
-                        <li class="header__item"><a href="#">Discovery</a></li>
-                        <li class="header__item"><a href="#">About</a></li>
-                        <li class="header__item"><a href="#">Contact us</a></li>
-                    </ul>
-                </nav>
+                <ul class="list-reset header__list">
+                    <li class="header__item"><a href="#">Discovery</a></li>
+                    <li class="header__item"><a href="#">About</a></li>
+                    <li class="header__item"><a href="#">Contact us</a></li>
+                </ul>
                 <div class="header__buttons">
                     <button class="btn-reset header__btn">
                         <svg class="header__svg" width="34" height="34" viewBox="0 0 34 34" fill="none"
