@@ -208,6 +208,7 @@
 
     .header__card {
         justify-content: center;
+        min-height: 50rem;
     }
 }
 
