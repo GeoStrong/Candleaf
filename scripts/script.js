@@ -432,4 +432,5 @@ cartBtn.addEventListener('click', function () {
 
 cartBtnBack.addEventListener('click', function () {
   calcDisplay('block', 'flex', cartContainer, 'none');
+  productContent.scrollIntoView({ behavior: 'smooth' });
 });
