@@ -5,13 +5,17 @@ const headerNav = document.querySelector('.header__nav');
 const headerList = document.querySelector('.header__list');
 const burgerOpen = document.querySelector('.header-burger__open');
 const burgerClose = document.querySelector('.header-burger__close');
+const cartBtn = document.querySelector('.header__btn--cart');
+const cartDetails = document.querySelector('.cart__details');
+const cartBtnBack = document.querySelector('.cart__button--back');
+const headerBottom = document.querySelector('.header__bottom');
+const main = document.querySelector('main');
 const productsSection = document.querySelector('.products');
 const productContent = document.querySelector('.products__content');
 const testimonialsContent = document.querySelector('.testimonials__content');
 const popularContent = document.querySelector('.popular__content');
 const productContainer = document.querySelector('.product__container');
-const main = document.querySelector('main');
-const headerBottom = document.querySelector('.header__bottom');
+const cartContainer = document.querySelector('.cart__container');
 
 const products = [
   {
@@ -112,7 +116,7 @@ const insertHtml = function (index, name, price) {
         <span class="products__price">${price}</span>
   </div>
     </button>
-</div>
+  </div>
     `;
   return html;
 };
@@ -165,15 +169,41 @@ const feedbacksCard = function (feedbacks) {
 
 feedbacksCard(feedbacks);
 
-const calcDisplay = function (value1, value2, value3) {
+const calcDisplay = function (value1, value2, selector, value3) {
   main.style.display = value1;
   headerBottom.style.display = value2;
-  productContainer.style.display = value3;
+  selector.style.display = value3;
+};
+
+const expandCart = function (index, name, price, number) {
+  const html = `
+        <div class="cart-product" data-number=${index}>
+          <div class="cart-product__first">
+                            <div class="cart-product__info">
+                                <img class="cart-product__img" src="./images/product-${
+                                  +index + 1
+                                }.png" alt="product">
+                                <div class="cart-product__text">
+                                    <h3 class="title product__title product__title--name">${name}®</h3>
+                                    <button class="btn-reset cart__button cart__button--remove">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-product__second cart-product__second--card">
+                            <h4 class="cart-product__price">${price}</h4>
+                            <h4 class="cart-product__quantity">${number}</h4>
+                            <h4 class="cart-product__total">${
+                              parseFloat(price) * number
+                            }</h4>
+                        </div>
+                    </div>
+      `;
+  return html;
 };
 
 const expandProduct = function (index, scrollTo) {
   const product = products[index];
-  calcDisplay('none', 'none', 'block');
+  calcDisplay('none', 'none', productContainer, 'block');
   header.scrollIntoView({ behavior: 'smooth' });
   const html = `
     <button class="btn-reset product-container__btn">
@@ -188,9 +218,9 @@ const expandProduct = function (index, scrollTo) {
                   +index + 1
                 }.png" alt="product"></div>
                 <div class="product__info">
-                    <h2 class="title product__title">${
+                    <h3 class="title product__title">${
                       product.name
-                    } Candleaf®</h2>
+                    } Candleaf®</h3>
                     <div class="product__buy">
                     <span class="product-info__price">${product.price}</span>
                     <div class="product__quantity">
@@ -254,8 +284,10 @@ const expandProduct = function (index, scrollTo) {
         </div>
         </div>
         `;
+
   productContainer.insertAdjacentHTML('beforeend', html);
 
+  const quantity = document.querySelector('.product-quantity__number');
   const loaderContainer = document.querySelector('.loader-container');
   const loader = document.querySelector('.loader');
   const loaderAdd = document.querySelector('.loader__add');
@@ -264,14 +296,19 @@ const expandProduct = function (index, scrollTo) {
   document
     .querySelector('.product-container__btn')
     .addEventListener('click', function () {
-      calcDisplay('block', 'flex', 'none');
+      calcDisplay('block', 'flex', productContainer, 'none');
       productContainer.innerHTML = '';
       scrollTo.scrollIntoView({ behavior: 'smooth' });
     });
 
   let number = 1;
-  const quantity = document.querySelector('.product-quantity__number');
   quantity.textContent = number;
+
+  let subTotal = function () {
+    return cart
+      .map((product) => product.total)
+      .reduce((accumulator, total) => accumulator + total, 0);
+  };
 
   document
     .querySelector('.product-quantity__btn--plus')
@@ -294,13 +331,41 @@ const expandProduct = function (index, scrollTo) {
         name: product.name,
         price: product.price,
         quantity: number,
+        total: parseFloat(product.price) * number,
+        index: index,
       });
       loaderContainer.style.display = 'flex';
       setTimeout(function () {
         loader.style.display = 'none';
         loaderAdd.style.display = 'flex';
-      }, 3000);
+      }, 1000);
+      cartDetails.insertAdjacentHTML(
+        'beforeend',
+        expandCart(index, product.name, product.price, number)
+      );
+
+      document.querySelector('.cart-conclusion__title--subtotal').textContent =
+        subTotal().toFixed(2);
     });
+
+  cartContainer.addEventListener('click', function (event) {
+    const cartProduct = event.target.closest('.cart-product');
+
+    cartProduct?.addEventListener('click', function (event) {
+      if (event.target.closest('.cart__button--remove')) {
+        const { number } = this.dataset;
+        const removingTotal = cart.findIndex((val) => val.index === number);
+        const { total } = cart[removingTotal];
+        let totalNum = subTotal();
+        totalNum -= total;
+        document.querySelector(
+          '.cart-conclusion__title--subtotal'
+        ).textContent = totalNum.toFixed(2);
+        cart.splice(removingTotal, 1);
+        this.parentNode.removeChild(cartProduct);
+      }
+    });
+  });
 
   loaderBtn.addEventListener('click', function () {
     loaderContainer.style.display = 'none';
@@ -319,14 +384,15 @@ const calcPopular = function (products) {
 };
 calcPopular(products);
 
-const calcIndex = function (event, x) {
+const calcIndex = function (event, thisContent) {
   const { index } = event.target.closest('.products__card').dataset;
-  expandProduct(index, x);
+  expandProduct(index, thisContent);
 };
 
 const clickEvent = function (selector) {
   selector.addEventListener('click', function (event) {
     const thisContent = this;
+    productContainer.innerHTML = '';
     calcIndex(event, thisContent);
   });
 };
@@ -348,4 +414,22 @@ burgerOpen.addEventListener('click', function (event) {
 burgerClose.addEventListener('click', function (event) {
   burgerActive(burgerOpen, 'none', event.currentTarget);
   headerList.classList.remove('active');
+});
+
+cartBtn.addEventListener('click', function () {
+  calcDisplay('none', 'none', cartContainer, 'block');
+  if (getComputedStyle(productContainer).display === 'block') {
+    productContainer.style.display = 'none';
+  }
+  header.scrollIntoView({ behavior: 'smooth' });
+  if (cart.length === 0) {
+    document.querySelector('.cart__title').textContent =
+      "You haven't added items to your cart yet";
+  } else {
+    document.querySelector('.cart__title').textContent = 'Your cart items';
+  }
+});
+
+cartBtnBack.addEventListener('click', function () {
+  calcDisplay('block', 'flex', cartContainer, 'none');
 });

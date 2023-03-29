@@ -43,7 +43,7 @@
                     <li class="header__item"><a href="#">Contact us</a></li>
                 </ul>
                 <div class="header__buttons">
-                    <button class="btn-reset header__btn">
+                    <button class="btn-reset header__btn header__btn--user">
                         <svg class="header__svg" width="34" height="34" viewBox="0 0 34 34" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -51,7 +51,7 @@
                                 fill="none" />
                         </svg>
                     </button>
-                    <button class="btn-reset header__btn">
+                    <button class="btn-reset header__btn header__btn--cart">
                         <svg class="header__svg" width="29" height="28" viewBox="0 0 29 28" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -134,6 +134,31 @@
     </main>
     <section class="product">
         <div class="container product__container">
+        </div>
+    </section>
+    <section class="cart">
+        <div class="container cart__container">
+            <div class="cart__intro">
+                <h2 class="title cart__title">Your cart items</h2>
+                <button class="btn-reset cart__button cart__button--back">Back to shopping</button>
+            </div>
+            <div class="cart-product__name">
+                <div class="cart-product__first">
+                    <h4 class="cart-product__title cart-product__title--product">Product</h4>
+                </div>
+                <div class="cart-product__second">
+                    <h4 class="cart-product__title">Price</h4>
+                    <h4 class="cart-product__title">Quantity</h4>
+                    <h4 class="cart-product__title">Total</h4>
+                </div>
+            </div>
+            <div class="cart__details">
+            </div>
+            <div class="cart__conclusion">
+                <h3 class="cart-conclusion__title">Sub-total</h3>
+                <h3 class="cart-conclusion__title cart-conclusion__title--subtotal"></h3>
+                <button class="btn btn-reset">Check out</button>
+            </div>
         </div>
     </section>
     <footer class="footer">
