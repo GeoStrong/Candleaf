@@ -425,8 +425,12 @@ cartBtn.addEventListener('click', function () {
   if (cart.length === 0) {
     document.querySelector('.cart__title').textContent =
       "You haven't added items to your cart yet";
+    document.querySelector('.cart-product__title--product').style.display =
+      'none';
   } else {
     document.querySelector('.cart__title').textContent = 'Your cart items';
+    document.querySelector('.cart-product__title--product').style.display =
+      'block';
   }
 });
 
