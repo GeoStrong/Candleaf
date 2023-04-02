@@ -16,6 +16,11 @@ const testimonialsContent = document.querySelector('.testimonials__content');
 const popularContent = document.querySelector('.popular__content');
 const productContainer = document.querySelector('.product__container');
 const cartContainer = document.querySelector('.cart__container');
+const btnScroll = document.querySelectorAll('.btn-scroll');
+const modal = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay');
+const btnCloseModal = document.querySelector('.btn--close-modal');
+const btnsOpenModal = document.querySelectorAll('.header__btn--user');
 
 const products = [
   {
@@ -406,14 +411,18 @@ const burgerActive = function (property, value, curTarget) {
   curTarget.style.display = 'none';
 };
 
+const btnCloseBurger = function (event) {
+  burgerActive(burgerOpen, 'none', event.currentTarget);
+  headerList.classList.remove('active');
+};
+
 burgerOpen.addEventListener('click', function (event) {
   burgerActive(burgerClose, 'flex', event.currentTarget);
   headerList.classList.add('active');
 });
 
 burgerClose.addEventListener('click', function (event) {
-  burgerActive(burgerOpen, 'none', event.currentTarget);
-  headerList.classList.remove('active');
+  btnCloseBurger(event);
 });
 
 cartBtn.addEventListener('click', function () {
@@ -437,4 +446,39 @@ cartBtn.addEventListener('click', function () {
 cartBtnBack.addEventListener('click', function () {
   calcDisplay('block', 'flex', cartContainer, 'none');
   productContent.scrollIntoView({ behavior: 'smooth' });
+});
+
+btnScroll.forEach((btn) =>
+  btn.addEventListener('click', function () {
+    productsSection.scrollIntoView({ behavior: 'smooth' });
+  })
+);
+
+const openModal = function (event) {
+  event.preventDefault();
+  modal.classList.remove('hidden');
+  overlay.classList.remove('hidden');
+};
+
+const closeModal = function () {
+  modal.classList.add('hidden');
+  overlay.classList.add('hidden');
+};
+
+btnsOpenModal.forEach((btn) => btn.addEventListener('click', openModal));
+
+btnCloseModal.addEventListener('click', closeModal);
+overlay.addEventListener('click', closeModal);
+
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+    closeModal();
+  }
+});
+
+headerList.addEventListener('click', function (event) {
+  if (event.target.closest('.header__item')) {
+    btnCloseBurger(event);
+    burgerClose.style.display = 'none';
+  }
 });
