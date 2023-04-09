@@ -135,6 +135,15 @@ body {
     font-weight: 500;
 }
 
+.section {
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+}
+
+.hidden {
+    opacity: 0;
+    transform: translateY(8rem);
+}
+
 /* header */
 
 .header {

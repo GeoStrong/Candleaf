@@ -1,5 +1,6 @@
 'use strict';
 
+const allSections = document.querySelectorAll('.section');
 const header = document.querySelector('header');
 const headerNav = document.querySelector('.header__nav');
 const headerList = document.querySelector('.header__list');
@@ -361,6 +362,7 @@ const expandProduct = function (index, scrollTo) {
         const { number } = this.dataset;
         const removingTotal = cart.findIndex((val) => val.index === number);
         const { total } = cart[removingTotal];
+        if (!total) return;
         let totalNum = subTotal();
         totalNum -= total;
         document.querySelector(
@@ -481,4 +483,21 @@ headerList.addEventListener('click', function (event) {
     btnCloseBurger(event);
     burgerClose.style.display = 'none';
   }
+});
+
+const revealSections = function (entries, observer) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+  entry.target.classList.remove('hidden');
+  observer.unobserve(entry.target);
+};
+
+const sectionObserver = new IntersectionObserver(revealSections, {
+  root: null,
+  threshold: 0,
+});
+
+allSections.forEach((section) => {
+  sectionObserver.observe(section);
+  section.classList.add('hidden');
 });
