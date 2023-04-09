@@ -345,10 +345,11 @@ const expandProduct = function (index, scrollTo) {
         loader.style.display = 'none';
         loaderAdd.style.display = 'flex';
       }, 1000);
-      cartDetails.insertAdjacentHTML(
-        'beforeend',
-        expandCart(index, product.name, product.price, number)
-      );
+      // cartDetails.insertAdjacentHTML(
+      //   'beforeend',
+      //   expandCart(index, product.name, product.price, number)
+      // );
+      localStorage.setItem('cart', JSON.stringify(cart));
 
       document.querySelector('.cart-conclusion__title--subtotal').textContent =
         subTotal().toFixed(2);
@@ -368,6 +369,9 @@ const expandProduct = function (index, scrollTo) {
         document.querySelector(
           '.cart-conclusion__title--subtotal'
         ).textContent = totalNum.toFixed(2);
+        const obj = JSON.parse(localStorage.getItem('cart'));
+        delete obj[removingTotal];
+        localStorage.setItem('cart', JSON.stringify(obj));
         cart.splice(removingTotal, 1);
         this.parentNode.removeChild(cartProduct);
       }
@@ -443,6 +447,14 @@ cartBtn.addEventListener('click', function () {
     document.querySelector('.cart-product__title--product').style.display =
       'block';
   }
+  const obj = JSON.parse(localStorage.getItem('cart'));
+  obj.forEach((product) => {
+    if (product === null) return;
+    cartDetails.insertAdjacentHTML(
+      'beforeend',
+      expandCart(product.index, product.name, product.price, product.quantity)
+    );
+  });
 });
 
 cartBtnBack.addEventListener('click', function () {
