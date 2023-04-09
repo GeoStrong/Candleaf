@@ -230,9 +230,9 @@ const expandProduct = function (index, scrollTo) {
                     <div class="product__buy">
                     <span class="product-info__price">${product.price}</span>
                     <div class="product__quantity">
-                        <button class="btn-reset product-quantity__btn product-quantity__btn--plus">+</button>
-                        <span class="product-quantity__number"></span>
                         <button class="btn-reset product-quantity__btn product-quantity__btn--minus">-</button>
+                        <span class="product-quantity__number"></span>
+                        <button class="btn-reset product-quantity__btn product-quantity__btn--plus">+</button>
                     </div>
                     </div>
                     <button class="btn btn-reset product__btn">
